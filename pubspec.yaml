@@ -33,6 +33,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.3
   flutter_triple: 1.2.7+4
+  animated_text_kit: ^4.2.2
+  mask_text_input_formatter: ^2.4.0
 
 dev_dependencies:
   flutter_test:

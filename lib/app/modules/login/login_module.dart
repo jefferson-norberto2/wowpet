@@ -1,5 +1,5 @@
 import 'package:wowpet/app/modules/home/home_module.dart';
-import 'package:wowpet/app/modules/login/login_page.dart';
+import 'package:wowpet/app/modules/login/pages/login_page.dart';
 import 'package:wowpet/app/modules/login/login_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
