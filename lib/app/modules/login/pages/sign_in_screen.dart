@@ -11,209 +11,212 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      backgroundColor: CustomColors.customPrimaryColor,
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // App name
-                    Text.rich(
-                      TextSpan(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+        child: Column(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // App name
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: size.height * 0.1),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                            style: const TextStyle(
+                              fontSize: 40,
+                            ),
+                            children: [
+                              const TextSpan(
+                                text: 'Pet',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: 'Friendly',
+                                style: TextStyle(
+                                  color: CustomColors.customColorYellow,
+                                ),
+                              ),
+                            ]),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: DefaultTextStyle(
                           style: const TextStyle(
-                            fontSize: 40,
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
-                          children: [
-                            const TextSpan(
-                              text: 'Pet',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                          child: AnimatedTextKit(
+                            pause: Duration.zero,
+                            repeatForever: true,
+                            animatedTexts: [
+                              FadeAnimatedText(
+                                'Cuide',
+                                textStyle: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            TextSpan(
-                              text: 'Friendly',
-                              style: TextStyle(
-                                color: CustomColors.customConstrateColorGreen,
+                              FadeAnimatedText(
+                                'Informe-se',
                               ),
-                            ),
-                          ]),
-                    ),
-                    // Category
-                    SizedBox(
-                      height: 30,
-                      child: DefaultTextStyle(
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                        child: AnimatedTextKit(
-                          pause: Duration.zero,
-                          repeatForever: true,
-                          animatedTexts: [
-                            FadeAnimatedText(
-                              'Cuide',
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
+                              FadeAnimatedText(
+                                'Reporte',
                               ),
-                            ),
-                            FadeAnimatedText(
-                              'Informe-se',
-                            ),
-                            FadeAnimatedText(
-                              'Reporte',
-                            ),
-                            FadeAnimatedText(
-                              'Encontre',
-                            ),
-                          ],
+                              FadeAnimatedText(
+                                'Encontre',
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(
-                    left: 30, right: 30, top: 20, bottom: 10),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(40),
+                    ],
                   ),
-                  color: Colors.white,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Email
-                    const CustomTextField(
-                        icon: Icons.email, label: 'Usuário ou Email'),
+                // Category
 
-                    // Password
-                    const CustomTextField(
-                      icon: Icons.lock,
-                      label: 'Senha',
-                      isSecrect: true,
-                      padding_bottom: 0.0,
-                    ),
+                // Email
+                const CustomTextField(
+                    icon: Icons.email, label: 'Usuário ou Email'),
 
-                    // Forgot Password Button
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Esqueceu sua senha?',
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                // Password
+                const CustomTextField(
+                  icon: Icons.lock,
+                  label: 'Senha',
+                  isSecrect: true,
+                  padding_bottom: 0.0,
+                ),
+
+                // Forgot Password Button
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Esqueceu sua senha?',
+                      style: TextStyle(
+                        color: Colors.grey[700],
                       ),
                     ),
+                  ),
+                ),
 
-                    // Sign In Button
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30),
-                      child: SizedBox(
-                        height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.customPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Entrar',
-                            style: TextStyle(fontSize: 18),
-                          ),
+                // Sign In Button
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, bottom: 10),
+                  child: SizedBox(
+                    height: 40,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.customPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Entrar',
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
+                  ),
+                ),
 
-                    // Sign In Button Google
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10, top: 10),
-                      child: SizedBox(
-                        height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.customPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                // Create Account Button
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  child: SizedBox(
+                    height: 40,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (c) => SignUpScreen()));
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                            color: CustomColors.customPrimaryColor, width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Image.asset(
+                              'assets/images/logo_google.png',
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.1,
                             ),
                           ),
-                          onPressed: () {},
-                          child: const Text(
+                          Text(
                             'Entrar com o Google',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // Divider
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            color: Colors.grey[400],
-                            thickness: 1,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Text('OU'),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            color: Colors.grey[400],
-                            thickness: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    // Create Account Button
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: SizedBox(
-                        height: 40,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (c) => SignUpScreen()));
-                          },
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                color: CustomColors.customPrimaryColor,
-                                width: 2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            'Reportar animal de rua',
                             style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 15,
                                 color: CustomColors.customPrimaryColor),
                           ),
-                        ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Divider
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 1,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('OU'),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 1,
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
+
+                // Report animal
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 20),
+                  child: SizedBox(
+                    height: 40,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.customPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Reportar Animal ou Denunciar Abuso',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

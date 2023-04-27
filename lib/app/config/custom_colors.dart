@@ -38,4 +38,6 @@ abstract class CustomColors {
       MaterialColor(0X185ADB, _swatchOpacityBlue);
 
   static Color customPrimaryColor = const Color.fromRGBO(24, 90, 219, 1);
+
+  static Color customColorYellow = const Color.fromRGBO(255, 198, 41, 1);
 }
