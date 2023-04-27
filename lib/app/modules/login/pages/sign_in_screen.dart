@@ -113,7 +113,7 @@ class SignInScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 30, bottom: 10),
                   child: SizedBox(
-                    height: 40,
+                    height: 45,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -135,7 +135,7 @@ class SignInScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 20),
                   child: SizedBox(
-                    height: 40,
+                    height: 45,
                     child: OutlinedButton(
                       onPressed: () {
                         Navigator.of(context).push(
@@ -197,7 +197,7 @@ class SignInScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10, top: 20),
                   child: SizedBox(
-                    height: 40,
+                    height: 45,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
