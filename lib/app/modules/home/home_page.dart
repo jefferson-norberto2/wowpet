@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:wowpet/app/modules/home/register_imunization_screen.dart';
 import '../../config/custom_colors.dart';
 import 'home_store.dart';
 
@@ -15,11 +16,12 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   late final HomeStore store;
   int _selectedIndex = 0;
+  bool _showDenuncie = true;
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Tela 1'),
     Text('Tela 2'),
-    Text('Tela 3'),
+    ResgisterImunizationScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -38,6 +40,19 @@ class HomePageState extends State<HomePage> {
   void dispose() {
     Modular.dispose<HomeStore>();
     super.dispose();
+  }
+
+  Widget _buildFloatingActionButton() {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 200),
+      child: _selectedIndex == 0
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              label: const Text('Denuncie'),
+              backgroundColor: CustomColors.customPrimaryColor,
+            )
+          : const SizedBox(),
+    );
   }
 
   @override
@@ -83,11 +98,7 @@ class HomePageState extends State<HomePage> {
           child: CircularProgressIndicator(),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: CustomColors.customPrimaryColor,
-        onPressed: () {},
-        label: const Text('Denuncie'),
-      ),
+      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 }

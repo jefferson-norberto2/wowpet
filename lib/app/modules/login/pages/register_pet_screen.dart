@@ -68,6 +68,24 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: CircleAvatar(
+                radius: 60,
+                backgroundColor: CustomColors.customPrimaryColor,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Icon(Icons.add_a_photo, color: Colors.white),
+                    Text(
+                      'Adicionar Foto',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             // Form fields
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -188,7 +206,7 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 180.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: SizedBox(
                       height: 50,
                       child: ElevatedButton(
