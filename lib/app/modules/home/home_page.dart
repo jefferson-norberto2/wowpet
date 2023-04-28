@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:wowpet/app/modules/home/home_screen.dart';
 import 'package:wowpet/app/modules/home/register_imunization_screen.dart';
 import 'package:wowpet/app/modules/home/reporter_screen.dart';
 import 'package:wowpet/app/modules/home/verify_nfc.dart';
@@ -20,7 +21,7 @@ class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text('Tela 1'),
+    HomeScreen(),
     ReporterScreen(),
     VerifyNfc(),
     ResgisterImunizationScreen()
@@ -115,7 +116,6 @@ class HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             ),
           ),
-          floatingActionButton: _buildFloatingActionButton(),
         ),
       ),
     );
