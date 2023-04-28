@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../components/custom_text_field.dart';
@@ -24,7 +25,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
-  int _radioVal = 0;
   Pet pet = Pet.yes;
 
   @override
@@ -133,20 +133,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const Text('Não'),
                     ],
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.customPrimaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.customPrimaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Continuar',
-                        style: TextStyle(
-                          fontSize: 18,
+                        onPressed: () {
+                          Modular.to.pushNamed('/register_pet/');
+                        },
+                        child: const Text(
+                          'Continuar',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
