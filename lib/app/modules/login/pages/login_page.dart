@@ -29,24 +29,25 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: CustomColors.customPrimaryColor,
-      ),
-      body: ScopedBuilder<LoginStore, Exception, int>(
-        store: store,
-        onState: (context, counter) {
-          return const SignInScreen();
-        },
-        onError: (context, error) => const Center(
-          child: Text(
-            'Put error here',
-            style: TextStyle(color: Colors.red),
+    return Container(
+      color: CustomColors.customPrimaryColor,
+      child: SafeArea(
+        child: Scaffold(
+          body: ScopedBuilder<LoginStore, Exception, int>(
+            store: store,
+            onState: (context, counter) {
+              return const SignInScreen();
+            },
+            onError: (context, error) => const Center(
+              child: Text(
+                'Put error here',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+            onLoading: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
-        ),
-        onLoading: (context) => const Center(
-          child: CircularProgressIndicator(),
         ),
       ),
     );
