@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
 
@@ -197,7 +198,9 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Modular.to.pushNamed('/home/');
+                        },
                         child: const Text(
                           'Continuar',
                           style: TextStyle(

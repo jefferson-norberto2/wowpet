@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import '../../config/custom_colors.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,19 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   late final HomeStore store;
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Tela 1'),
+    Text('Tela 2'),
+    Text('Tela 3'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -30,22 +44,33 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter'),
+        backgroundColor: CustomColors.customPrimaryColor,
+        title: const Text('Início'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Inicial',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.report),
+            label: 'Reporte',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: CustomColors.customPrimaryColor,
+        onTap: _onItemTapped,
       ),
       body: ScopedBuilder<HomeStore, Exception, int>(
         store: store,
         onState: (context, counter) {
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('$counter'),
-                TextButton(
-                  onPressed: store.goToInit,
-                  child: const Text('Go to Init'),
-                ),
-              ],
-            ),
+            child: _widgetOptions.elementAt(_selectedIndex),
           );
         },
         onError: (context, error) => const Center(
@@ -58,11 +83,10 @@ class HomePageState extends State<HomePage> {
           child: CircularProgressIndicator(),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: CustomColors.customPrimaryColor,
+        onPressed: () {},
+        label: const Text('Denuncie'),
       ),
     );
   }
