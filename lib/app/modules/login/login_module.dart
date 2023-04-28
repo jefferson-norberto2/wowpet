@@ -5,6 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wowpet/app/modules/login/pages/register_pet_screen.dart';
 import 'package:wowpet/app/modules/login/pages/sign_up_screen.dart';
 
+import '../home/test.dart';
+
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
@@ -16,6 +18,7 @@ class LoginModule extends Module {
     ChildRoute(Modular.initialRoute, child: (_, args) => const LoginPage()),
     ChildRoute('/sign_up/', child: (_, args) => SignUpScreen()),
     ChildRoute('/register_pet/', child: (_, args) => RegisterPetScreen()),
-    ModuleRoute('/home/', module: HomeModule())
+    ModuleRoute('/home/', module: HomeModule()),
+    ChildRoute('/test/', child: (_, args) => const MyApp2()),
   ];
 }

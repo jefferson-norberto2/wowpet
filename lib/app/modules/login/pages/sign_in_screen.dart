@@ -205,7 +205,9 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Modular.to.pushNamed('/test/');
+                      },
                       child: const Text(
                         'Reportar Animal ou Denunciar Abuso',
                         style: TextStyle(fontSize: 16),

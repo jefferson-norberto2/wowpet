@@ -116,34 +116,31 @@ class _ResgisterImunizationScreenState
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, bottom: 5),
-                  child: SizedBox(
-                    height: 50,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(
-                            color: CustomColors.customPrimaryColor, width: 2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                SizedBox(
+                  height: 50,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: CustomColors.customPrimaryColor, width: 2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.pending_actions_sharp,
+                                color: CustomColors.customPrimaryColor)),
+                        Text(
+                          'Registrar Imunização',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: CustomColors.customPrimaryColor),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.pending_actions_sharp,
-                                  color: CustomColors.customPrimaryColor)),
-                          Text(
-                            'Registrar Imunização',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: CustomColors.customPrimaryColor),
-                          ),
-                        ],
-                      ),
+                      ],
                     ),
                   ),
                 ),

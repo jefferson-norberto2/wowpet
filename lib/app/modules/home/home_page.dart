@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/modules/home/register_imunization_screen.dart';
+import 'package:wowpet/app/modules/home/reporter_screen.dart';
 import '../../config/custom_colors.dart';
 import 'home_store.dart';
 
@@ -20,7 +21,7 @@ class HomePageState extends State<HomePage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Tela 1'),
-    Text('Tela 2'),
+    ReporterScreen(),
     ResgisterImunizationScreen()
   ];
 
