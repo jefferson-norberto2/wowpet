@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/login/login_store.dart';
 import 'package:flutter/material.dart';
 import 'package:wowpet/app/modules/login/pages/sign_in_screen.dart';
@@ -31,6 +32,7 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: CustomColors.customPrimaryColor,
       ),
       body: ScopedBuilder<LoginStore, Exception, int>(
         store: store,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wowpet/app/config/custom_colors.dart';
 
 class CustomTextField extends StatefulWidget {
   final IconData icon;
@@ -43,6 +44,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         inputFormatters: widget.inputFormatters,
         obscureText: isObscure,
         decoration: InputDecoration(
+          focusColor: CustomColors.customPrimaryColor,
           suffixIcon: widget.isSecrect
               ? IconButton(
                   onPressed: () {
