@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp2> {
               onPressed: () {
                 Navigator.pop(context);
               }),
-          title: const Text('Reportar anima'),
+          title: const Text('Reportar animal'),
           backgroundColor: CustomColors.customPrimaryColor,
         ),
         body: ReporterScreen(),

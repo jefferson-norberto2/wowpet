@@ -122,7 +122,9 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Modular.to.pushNamed('/home_pr/');
+                      },
                       child: const Text(
                         'Entrar',
                         style: TextStyle(fontSize: 18),

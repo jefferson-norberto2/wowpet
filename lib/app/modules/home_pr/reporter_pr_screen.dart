@@ -6,11 +6,11 @@ import 'package:wowpet/app/modules/home/components/custom_button.dart';
 import 'package:wowpet/app/modules/home/components/custom_button_outline.dart';
 import 'package:location/location.dart';
 
-class ReporterScreen extends StatefulWidget {
-  const ReporterScreen({super.key});
+class ReporterPrScreen extends StatefulWidget {
+  const ReporterPrScreen({super.key});
 
   @override
-  State<ReporterScreen> createState() => _ReporterScreenState();
+  State<ReporterPrScreen> createState() => _ReporterPrScreenState();
 }
 
 enum AnimalNumber { one, tow, three, more }
@@ -21,7 +21,7 @@ enum Identification { yes, no }
 
 enum Zoonoses { yes, no }
 
-class _ReporterScreenState extends State<ReporterScreen> {
+class _ReporterPrScreenState extends State<ReporterPrScreen> {
   late GoogleMapController mapController;
   AnimalNumber _animalNumber = AnimalNumber.one;
   LookedAnimal _lookedAnimal = LookedAnimal.yes;
