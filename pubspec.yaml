@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^9.0.2
   location: ^4.4.0
   geocoding: ^2.1.0
+  image_picker:
 
 dev_dependencies:
   flutter_test:

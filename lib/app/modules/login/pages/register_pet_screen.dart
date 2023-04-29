@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterPetScreen extends StatefulWidget {
   RegisterPetScreen({super.key});
@@ -15,6 +18,9 @@ enum Kind { dog, cat }
 enum Size { small, medium, large }
 
 class _RegisterPetScreenState extends State<RegisterPetScreen> {
+  File? _image;
+
+  final imagePicker = ImagePicker();
   Kind pet = Kind.dog;
   Size sizePet = Size.small;
   static const breed = <String>{
@@ -25,6 +31,7 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
     'Maltês',
     'Bulldog',
   };
+  String? myImage;
 
   final List<DropdownMenuItem<String>> _dropDownBreed = breed
       .map(
@@ -70,18 +77,43 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
 
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: CircleAvatar(
-                radius: 60,
-                backgroundColor: CustomColors.customPrimaryColor,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.add_a_photo, color: Colors.white),
-                    Text(
-                      'Adicionar Foto',
-                      style: TextStyle(color: Colors.white),
+              child: InkWell(
+                onTap: () async {
+                  final image = await imagePicker.pickImage(
+                    source: ImageSource.gallery,
+                  );
+                  setState(() {
+                    if (image != null) {
+                      myImage = image.path;
+                      _image = File(image.path);
+                    }
+                  });
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundColor: CustomColors.customPrimaryColor,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        myImage != null
+                            ? Image.file(
+                                _image!,
+                                fit: BoxFit.fill,
+                              )
+                            : Column(
+                                children: [
+                                  Icon(Icons.add_a_photo, color: Colors.white),
+                                  Text(
+                                    'Adicionar Foto',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
