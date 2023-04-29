@@ -15,6 +15,17 @@ class SignUpScreen extends StatefulWidget {
 enum Pet { yes, no }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController controllerName =
+      TextEditingController(text: 'Jefferson Falcão');
+  TextEditingController controllerEmail =
+      TextEditingController(text: 'meu@email.com');
+  TextEditingController controllerPhone =
+      TextEditingController(text: '(81) 9 9999-9999');
+  TextEditingController controllerRua =
+      TextEditingController(text: 'Rua minha rua');
+  TextEditingController controllerCEP =
+      TextEditingController(text: '50.000-000');
+
   final cepFormartter = MaskTextInputFormatter(
     mask: '##.###-###',
     filter: {"#": RegExp(r'[0-9]')},
@@ -70,23 +81,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const CustomTextField(
+                  CustomTextField(
                     icon: Icons.person,
                     label: 'Nome',
+                    controller: controllerName,
                   ),
-                  const CustomTextField(
+                  CustomTextField(
                     icon: Icons.email,
                     label: 'Email',
+                    controller: controllerEmail,
                   ),
                   CustomTextField(
                     icon: Icons.phone,
                     label: 'Celular',
                     keyboardType: TextInputType.phone,
                     inputFormatters: [phoneFormartter],
+                    controller: controllerPhone,
                   ),
-                  const CustomTextField(
+                  CustomTextField(
                     icon: Icons.file_copy,
                     label: 'Endereço',
+                    controller: controllerRua,
                   ),
                   const CustomTextField(
                     icon: Icons.file_copy,
@@ -97,6 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     label: 'CEP',
                     keyboardType: TextInputType.number,
                     inputFormatters: [cepFormartter],
+                    controller: controllerCEP,
                   ),
                   Text(
                     'Você tem algum animal de estimação?',
@@ -145,7 +161,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         onPressed: () {
-                          Modular.to.pushNamed('/register_pet/');
+                          if (pet == Pet.yes) {
+                            Modular.to.pushNamed('/register_pet/');
+                          } else {
+                            Modular.to.pushNamed('/home/');
+                          }
                         },
                         child: const Text(
                           'Continuar',

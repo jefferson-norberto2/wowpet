@@ -9,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final double? padding_bottom;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatefulWidget {
     this.inputFormatters,
     this.keyboardType,
     this.padding_bottom,
+    this.controller,
   });
 
   @override
@@ -40,6 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ? EdgeInsets.only(bottom: widget.padding_bottom as double)
           : const EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        controller: widget.controller,
         keyboardType: widget.keyboardType,
         inputFormatters: widget.inputFormatters,
         obscureText: isObscure,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/modules/home_pr/home_pr_screen.dart';
-import 'package:wowpet/app/modules/home_pr/register_pr_imunization_screen.dart';
 import 'package:wowpet/app/modules/home_pr/register_pr_nfc.dart';
 import 'package:wowpet/app/modules/home_pr/reporter_pr_screen.dart';
 import 'package:wowpet/app/modules/home_pr/verify_pr_nfc.dart';

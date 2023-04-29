@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
+import 'package:wowpet/app/modules/home_pr/imunization_pr_screen.dart';
 
 class VerifyPrNfc extends StatefulWidget {
   const VerifyPrNfc({super.key});
@@ -66,25 +68,34 @@ class _VerifyPrNfcState extends State<VerifyPrNfc> {
                           radius: 90,
                           backgroundImage: AssetImage('assets/images/dog.png'),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: CircleAvatar(
-                                radius: 50,
-                                backgroundColor:
-                                    CustomColors.customPrimaryColor,
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.file_copy_rounded,
-                                    color: Colors.white,
+                        InkWell(
+                          onTap: () {
+                            Modular.to
+                                .pushNamed('/home_pr/immunization_pr_screen/');
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: CircleAvatar(
+                                  radius: 50,
+                                  backgroundColor:
+                                      CustomColors.customPrimaryColor,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Modular.to.pushNamed(
+                                          '/home_pr/immunization_pr_screen/');
+                                    },
+                                    icon: const Icon(
+                                      Icons.file_copy_rounded,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Text('Cronograma\nimunização')
-                          ],
+                              const Text('Cronograma\nimunização')
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -58,7 +58,7 @@ class _HomePrScreenState extends State<HomePrScreen> {
                       subtitle: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                          'Verifique e registre animais.',
+                          'Verifique e registre.',
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                       ),
