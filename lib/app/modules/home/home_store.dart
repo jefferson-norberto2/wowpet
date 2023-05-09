@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-class HomeStore extends NotifierStore<Exception, int> {
+class HomeStore extends Store<int> with MementoMixin {
   HomeStore() : super(0);
 
   Future<void> increment() async {

@@ -17,7 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  late final HomeStore store;
+  final store = HomeStore();
+  late Disposer disposer;
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -36,13 +37,13 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    store = Modular.get<HomeStore>();
+    disposer = store.observer(onState: print);
   }
 
   @override
   void dispose() {
-    Modular.dispose<HomeStore>();
     super.dispose();
+    disposer();
   }
 
   Widget _buildFloatingActionButton() {
@@ -99,7 +100,7 @@ class HomePageState extends State<HomePage> {
             selectedItemColor: CustomColors.customPrimaryColor,
             onTap: _onItemTapped,
           ),
-          body: ScopedBuilder<HomeStore, Exception, int>(
+          body: ScopedBuilder<HomeStore, int>(
             store: store,
             onState: (context, counter) {
               return Center(

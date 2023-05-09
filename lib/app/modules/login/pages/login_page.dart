@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/login/login_store.dart';
@@ -13,18 +12,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  late final LoginStore store;
+  final store = LoginStore();
+  late Disposer disposer;
 
   @override
   void initState() {
     super.initState();
-    store = Modular.get<LoginStore>();
+    disposer = store.observer(onState: print);
   }
 
   @override
   void dispose() {
-    Modular.dispose<LoginStore>();
     super.dispose();
+    disposer();
   }
 
   @override
@@ -33,7 +33,7 @@ class LoginPageState extends State<LoginPage> {
       color: CustomColors.customPrimaryColor,
       child: SafeArea(
         child: Scaffold(
-          body: ScopedBuilder<LoginStore, Exception, int>(
+          body: ScopedBuilder<LoginStore, int>(
             store: store,
             onState: (context, counter) {
               return const SignInScreen();

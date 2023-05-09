@@ -175,10 +175,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_triple
-      sha256: f20a00240747613d25b89cecb27c165896deb3a79788ce0a65206a29547fc971
+      sha256: "044d9951abd2c8da1d915437167832319ca6aaf8dac13b5a7fc3761c88dc29a6"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.7+4"
+    version: "2.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -556,10 +556,18 @@ packages:
     dependency: transitive
     description:
       name: rx_notifier
-      sha256: "8d012982a36882eb019982ecfdf247cdeb2468972ac2c7d49cd49dccadde7a2c"
+      sha256: eb67724d2783d8fe67d4619d7f97bc4878e0e62a6b50e6bed6ec47361148c055
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "2.2.2"
+  rx_notifier_annotation:
+    dependency: transitive
+    description:
+      name: rx_notifier_annotation
+      sha256: "362496563d617aa6fa21ab9c131f66348f3266b6580d69ecc23d2c23a52070a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   shelf:
     dependency: transitive
     description:
@@ -689,18 +697,18 @@ packages:
     dependency: transitive
     description:
       name: triple
-      sha256: ecade2cfd2bd6860d96ece3c819a5166164eaff604a1569e253f519c5abd6f51
+      sha256: "210eb1298db3d09465c6ea128413ffcb4859cb1140009f895d69efe439f9367c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0+1"
+    version: "2.0.1"
   triple_test:
     dependency: "direct dev"
     description:
       name: triple_test
-      sha256: "62f3bd7997554f4fdf4954f0ef801a51b7e0c66b1a2ab9d2541298d8a428d1f4"
+      sha256: "204ac23ced355364ec81e0efdd6442bf0f931d0592886488fcc8516b66ab59e2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0+1"
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:

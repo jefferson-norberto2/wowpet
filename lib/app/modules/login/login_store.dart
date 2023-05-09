@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-class LoginStore extends NotifierStore<Exception, int> {
+class LoginStore extends Store<int> {
   LoginStore() : super(0);
 
   Future<void> login() async {
