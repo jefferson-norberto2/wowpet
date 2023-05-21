@@ -22,6 +22,26 @@ class CommunicationStore {
     return encryptPassword(enteredPassword) == storedPassword;
   }
 
+  Future<String?> login(String email, String password) async {
+    var url = 'http://localhost:5000/login';
+
+    var response = await http.post(
+      Uri.parse(url),
+      body: {
+        'email': email,
+        'password': encryptPassword(password),
+      },
+    );
+
+    if (response.statusCode == 200) {
+      debugPrint('User logged in successfully!');
+      return response.body;
+    } else {
+      debugPrint('Failed to login user. Error: ${response.statusCode}');
+      return null;
+    }
+  }
+
   Future<bool> addUser(User user) async {
     var url = 'http://localhost:5000/register';
 

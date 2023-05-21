@@ -39,6 +39,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Pet pet = Pet.yes;
 
   @override
+  void dispose() {
+    controllerName.dispose();
+    controllerEmail.dispose();
+    controllerPassword.dispose();
+    controllerPhone.dispose();
+    controllerRua.dispose();
+    controllerBairro.dispose();
+    controllerCEP.dispose();
+    _signUpStore.destroy();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 

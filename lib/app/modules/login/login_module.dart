@@ -7,7 +7,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wowpet/app/modules/login/pages/register_pet_screen.dart';
 import 'package:wowpet/app/modules/login/pages/sign_up_screen.dart';
 import 'package:wowpet/app/modules/login/sing_up_store.dart';
-
 import '../home/test.dart';
 
 class LoginModule extends Module {
