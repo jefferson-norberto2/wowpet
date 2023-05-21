@@ -101,9 +101,7 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {
-                      communicationStore.registerUser();
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
@@ -156,16 +154,11 @@ class SignInScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Image.asset(
-                              'assets/images/logo_google.png',
-                              height: MediaQuery.of(context).size.height * 0.1,
-                              width: MediaQuery.of(context).size.width * 0.1,
-                            ),
-                          ),
+                          const Padding(
+                              padding: EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.person_add)),
                           Text(
-                            'Entrar com o Google',
+                            'Cadastre-se',
                             style: TextStyle(
                                 fontSize: 15,
                                 color: CustomColors.customPrimaryColor),

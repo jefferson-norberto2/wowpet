@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
+import '../models/user.dart';
+import '../sing_up_store.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -15,16 +16,15 @@ class SignUpScreen extends StatefulWidget {
 enum Pet { yes, no }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController controllerName =
-      TextEditingController(text: 'Jefferson Falcão');
-  TextEditingController controllerEmail =
-      TextEditingController(text: 'meu@email.com');
-  TextEditingController controllerPhone =
-      TextEditingController(text: '(81) 9 9999-9999');
-  TextEditingController controllerRua =
-      TextEditingController(text: 'Rua minha rua');
-  TextEditingController controllerCEP =
-      TextEditingController(text: '50.000-000');
+  final TextEditingController controllerName = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
+  final TextEditingController controllerPhone = TextEditingController();
+  final TextEditingController controllerRua = TextEditingController();
+  final TextEditingController controllerBairro = TextEditingController();
+  final TextEditingController controllerCEP = TextEditingController();
+  final SignUpStore _signUpStore = Modular.get();
+  late User _user;
 
   final cepFormartter = MaskTextInputFormatter(
     mask: '##.###-###',
@@ -99,13 +99,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: controllerPhone,
                   ),
                   CustomTextField(
+                    icon: Icons.lock,
+                    isSecrect: true,
+                    label: 'Senha',
+                    controller: controllerPassword,
+                  ),
+                  CustomTextField(
                     icon: Icons.file_copy,
                     label: 'Endereço',
                     controller: controllerRua,
                   ),
-                  const CustomTextField(
+                  CustomTextField(
                     icon: Icons.file_copy,
                     label: 'Bairro',
+                    controller: controllerBairro,
                   ),
                   CustomTextField(
                     icon: Icons.file_copy,
@@ -164,7 +171,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           if (pet == Pet.yes) {
                             Modular.to.pushNamed('/register_pet/');
                           } else {
-                            Modular.to.pushNamed('/home/');
+                            _user = User(
+                              controllerName.text,
+                              controllerEmail.text,
+                              controllerPhone.text,
+                              controllerPassword.text,
+                              controllerRua.text,
+                              controllerBairro.text,
+                              controllerCEP.text,
+                              false,
+                            );
+                            _signUpStore.singUp(_user);
                           }
                         },
                         child: const Text(
