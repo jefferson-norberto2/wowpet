@@ -1,3 +1,4 @@
+import 'package:wowpet/app/modules/communication/communication.dart';
 import 'package:wowpet/app/modules/home/home_module.dart';
 import 'package:wowpet/app/modules/home_pr/home_pr_module.dart';
 import 'package:wowpet/app/modules/login/pages/login_page.dart';
@@ -12,6 +13,7 @@ class LoginModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LoginStore()),
+    Bind.instance(CommunicationStore())
   ];
 
   @override

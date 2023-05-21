@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../communication/communication.dart';
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
+  final communicationStore = CommunicationStore();
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +101,9 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      communicationStore.registerUser();
+                    },
                     child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(

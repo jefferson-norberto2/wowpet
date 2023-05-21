@@ -36,7 +36,7 @@ class LoginPageState extends State<LoginPage> {
           body: ScopedBuilder<LoginStore, int>(
             store: store,
             onState: (context, counter) {
-              return const SignInScreen();
+              return SignInScreen();
             },
             onError: (context, error) => const Center(
               child: Text(

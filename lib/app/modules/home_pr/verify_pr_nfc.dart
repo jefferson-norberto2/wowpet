@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import 'package:wowpet/app/modules/home_pr/imunization_pr_screen.dart';
 
 class VerifyPrNfc extends StatefulWidget {
   const VerifyPrNfc({super.key});
