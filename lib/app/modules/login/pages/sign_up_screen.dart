@@ -17,6 +17,7 @@ enum Pet { yes, no }
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController controllerName = TextEditingController();
+  final TextEditingController controllerCpf = TextEditingController();
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerPhone = TextEditingController();
@@ -28,6 +29,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final cepFormartter = MaskTextInputFormatter(
     mask: '##.###-###',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
+  final cpfFormartter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
     filter: {"#": RegExp(r'[0-9]')},
   );
 
@@ -98,6 +104,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     icon: Icons.person,
                     label: 'Nome',
                     controller: controllerName,
+                  ),
+                  CustomTextField(
+                    icon: Icons.card_membership,
+                    label: 'CPF',
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [cpfFormartter],
+                    controller: controllerCpf,
                   ),
                   CustomTextField(
                     icon: Icons.email,
@@ -186,6 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           } else {
                             _user = User(
                               controllerName.text,
+                              controllerCpf.text,
                               controllerEmail.text,
                               controllerPhone.text,
                               controllerPassword.text,

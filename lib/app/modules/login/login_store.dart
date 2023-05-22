@@ -15,8 +15,7 @@ class LoginStore extends Store<int> {
       setError(1);
     } else {
       Modular.to.pushReplacementNamed('/home/');
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 }

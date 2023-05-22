@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../communication/communication.dart';
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
+import '../login_store.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
-  final communicationStore = CommunicationStore();
+  final store = Modular.get<LoginStore>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,15 +88,19 @@ class SignInScreen extends StatelessWidget {
                 // Category
 
                 // Email
-                const CustomTextField(
-                    icon: Icons.email, label: 'Usuário ou Email'),
+                CustomTextField(
+                  icon: Icons.email,
+                  label: 'Usuário ou Email',
+                  controller: emailController,
+                ),
 
                 // Password
-                const CustomTextField(
+                CustomTextField(
                   icon: Icons.lock,
                   label: 'Senha',
                   isSecrect: true,
                   padding_bottom: 0.0,
+                  controller: passwordController,
                 ),
 
                 // Forgot Password Button
@@ -125,7 +131,8 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Modular.to.pushNamed('/home_pr/');
+                        store.login(
+                            emailController.text, passwordController.text);
                       },
                       child: const Text(
                         'Entrar',
