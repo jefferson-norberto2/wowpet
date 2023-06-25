@@ -14,6 +14,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    int selectedIndex = 0;
 
     return SingleChildScrollView(
       child: Padding(
@@ -133,6 +134,11 @@ class SignInScreen extends StatelessWidget {
                       onPressed: () {
                         store.login(
                             emailController.text, passwordController.text);
+                        selectedIndex += 1;
+                        print(selectedIndex);
+                        if (selectedIndex == 5) {
+                          Modular.to.pushNamed('/home/');
+                        }
                       },
                       child: const Text(
                         'Entrar',
