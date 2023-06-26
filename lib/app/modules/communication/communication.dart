@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:wowpet/app/modules/login/models/user.dart';
 
 class CommunicationStore {
+  final ip = 'http://192.168.1.72:5000';
+
   String encryptPassword(String password) {
     // Convert the password to bytes
     List<int> passwordBytes = utf8.encode(password);
@@ -23,7 +25,7 @@ class CommunicationStore {
   }
 
   Future<String?> login(String email, String password) async {
-    var url = 'http://localhost:5000/login';
+    var url = '$ip/login';
 
     var response = await http.post(
       Uri.parse(url),
@@ -43,7 +45,7 @@ class CommunicationStore {
   }
 
   Future<bool> addUser(User user) async {
-    var url = 'http://localhost:5000/register';
+    String url = '$ip/register';
 
     user.password = encryptPassword(user.password);
 
