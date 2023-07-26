@@ -135,7 +135,7 @@ class _VerifyPrNfcState extends State<VerifyPrNfc> {
                     ),
                   ),
             readed == false
-                ? SizedBox()
+                ? const SizedBox()
                 : CustomButton(
                     text: 'Refazer leitura NFC',
                     onPressed: () {

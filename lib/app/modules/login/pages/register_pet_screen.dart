@@ -7,7 +7,7 @@ import '../../../config/custom_colors.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterPetScreen extends StatefulWidget {
-  RegisterPetScreen({super.key});
+  const RegisterPetScreen({super.key});
 
   @override
   State<RegisterPetScreen> createState() => _RegisterPetScreenState();
@@ -102,7 +102,7 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
                                 _image!,
                                 fit: BoxFit.fill,
                               )
-                            : Column(
+                            : const Column(
                                 children: [
                                   Icon(Icons.add_a_photo, color: Colors.white),
                                   Text(

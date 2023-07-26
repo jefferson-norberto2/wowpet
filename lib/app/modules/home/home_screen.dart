@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             for (int i = 0; i < 5; i++)
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: CircleAvatar(
                                   radius: sizeDiameter,
                                   backgroundImage: AssetImage(images[i]),

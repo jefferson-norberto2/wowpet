@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp2> {
           title: const Text('Reportar animal'),
           backgroundColor: CustomColors.customPrimaryColor,
         ),
-        body: ReporterScreen(),
+        body: const ReporterScreen(),
       ),
     );
   }
