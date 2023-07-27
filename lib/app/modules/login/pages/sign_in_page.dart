@@ -3,7 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../components/custom_text_field.dart';
 import '../../../config/custom_colors.dart';
-import '../login_store.dart';
+import '../stores/login_store.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -90,8 +90,8 @@ class SignInScreen extends StatelessWidget {
 
                 // Email
                 CustomTextField(
-                  icon: Icons.email,
-                  label: 'Usuário ou Email',
+                  icon: Icons.person,
+                  label: 'Usuário',
                   controller: emailController,
                 ),
 
@@ -108,7 +108,9 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Modular.to.pushNamed('/forgot_password/');
+                    },
                     child: Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
@@ -135,7 +137,6 @@ class SignInScreen extends StatelessWidget {
                         store.login(
                             emailController.text, passwordController.text);
                         selectedIndex += 1;
-                        print(selectedIndex);
                         if (selectedIndex == 5) {
                           Modular.to.pushNamed('/home/');
                         }
@@ -167,9 +168,9 @@ class SignInScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Padding(
-                              padding: EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.person_add)),
+                          Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.person_add, color: CustomColors.customPrimaryColor,),),
                           Text(
                             'Cadastre-se',
                             style: TextStyle(

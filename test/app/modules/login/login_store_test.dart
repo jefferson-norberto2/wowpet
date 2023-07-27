@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wowpet/app/modules/login/login_store.dart';
+import 'package:wowpet/app/modules/login/stores/login_store.dart';
  
 void main() {
   late LoginStore store;

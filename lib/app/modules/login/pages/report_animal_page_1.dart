@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
-import 'package:wowpet/app/modules/home/reporter_screen.dart';
+import 'package:wowpet/app/modules/home/pages/reporter_screen.dart';
 
-class MyApp2 extends StatefulWidget {
-  const MyApp2({Key? key}) : super(key: key);
+class ReportAnimalPage1 extends StatefulWidget {
+  const ReportAnimalPage1({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  ReportAnimalPage1State createState() => ReportAnimalPage1State();
 }
 
-class _MyAppState extends State<MyApp2> {
+class ReportAnimalPage1State extends State<ReportAnimalPage1> {
   late GoogleMapController mapController;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
 
   @override
   Widget build(BuildContext context) {

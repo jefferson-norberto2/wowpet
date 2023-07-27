@@ -1,8 +1,8 @@
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
-import 'package:wowpet/app/modules/login/login_store.dart';
+import 'package:wowpet/app/modules/login/stores/login_store.dart';
 import 'package:flutter/material.dart';
-import 'package:wowpet/app/modules/login/pages/sign_in_screen.dart';
+import 'package:wowpet/app/modules/login/pages/sign_in_page.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;

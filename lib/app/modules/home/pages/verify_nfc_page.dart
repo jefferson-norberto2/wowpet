@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import 'package:wowpet/app/modules/home/verify_nfc_store.dart';
-import 'components/my_alert_dialog.dart';
+import 'package:wowpet/app/modules/home/stores/verify_nfc_store.dart';
+import '../components/my_alert_dialog.dart';
 
-class VerifyNfc extends StatefulWidget {
-  const VerifyNfc({super.key});
+class VerifyNfcPage extends StatefulWidget {
+  const VerifyNfcPage({super.key});
 
   @override
-  State<VerifyNfc> createState() => _VerifyNfcState();
+  State<VerifyNfcPage> createState() => _VerifyNfcPageState();
 }
 
-class _VerifyNfcState extends State<VerifyNfc> {
+class _VerifyNfcPageState extends State<VerifyNfcPage> {
   bool readed = false;
   final store = VerifyNfcStore();
   late Disposer disposer;

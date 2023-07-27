@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
-import 'package:wowpet/app/modules/login/models/user.dart';
+import 'package:wowpet/app/modules/login/entities/user.dart';
 
 class CommunicationStore {
   final ip = 'http://192.168.1.72:5000';
@@ -61,5 +61,9 @@ class CommunicationStore {
       debugPrint('Failed to register user. Error: ${response.statusCode}');
       return false;
     }
+  }
+
+  Future<bool> recover_password(String? email, String? password) {
+    return Future.delayed(Duration(seconds: 2), () => true);
   }
 }

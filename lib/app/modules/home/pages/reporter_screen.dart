@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import 'package:wowpet/app/modules/home/components/custom_button_outline.dart';
 import 'package:location/location.dart';
+
+enum AnimalNumber { one, tow, three, more }
+enum LookedAnimal { yes, no }
+enum Identification { yes, no }
+enum Zoonoses { yes, no }
 
 class ReporterScreen extends StatefulWidget {
   const ReporterScreen({super.key});
@@ -13,27 +18,18 @@ class ReporterScreen extends StatefulWidget {
   State<ReporterScreen> createState() => _ReporterScreenState();
 }
 
-enum AnimalNumber { one, tow, three, more }
-
-enum LookedAnimal { yes, no }
-
-enum Identification { yes, no }
-
-enum Zoonoses { yes, no }
-
 class _ReporterScreenState extends State<ReporterScreen> {
   late GoogleMapController mapController;
   AnimalNumber _animalNumber = AnimalNumber.one;
   LookedAnimal _lookedAnimal = LookedAnimal.yes;
   Identification _identification = Identification.no;
   Zoonoses _zoonoses = Zoonoses.yes;
-
-  final LatLng _center = const LatLng(-8.05428, -34.8813);
   final Location _location = Location();
   LatLng? _myPosition;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future<bool> permissionRequest() async {
@@ -45,8 +41,26 @@ class _ReporterScreenState extends State<ReporterScreen> {
     }
   }
 
+  Future<bool> takeLocation() async{
+    if (await permissionRequest()) {
+      final position = await Geolocator.getCurrentPosition();
+      mapController.animateCamera(
+          CameraUpdate.newCameraPosition(CameraPosition(
+        target: LatLng(position.latitude, position.longitude),
+        zoom: 15,
+      )));
+        _myPosition =
+            LatLng(position.latitude, position.longitude);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    
+
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -64,63 +78,26 @@ class _ReporterScreenState extends State<ReporterScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
                   width: MediaQuery.of(context).size.width,
-                  child: GoogleMap(
-                    markers: _myPosition != null
-                        ? <Marker>{
-                            Marker(
-                              markerId: const MarkerId('currentLocation'),
-                              position: _myPosition!,
-                              icon: BitmapDescriptor.defaultMarkerWithHue(
-                                  BitmapDescriptor.hueBlue),
-                              infoWindow: const InfoWindow(
-                                title: 'Você está aqui',
-                              ),
-                            ),
-                          }
-                        : <Marker>{},
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: _myPosition != null ? _myPosition! : _center,
-                      zoom: 13.0,
-                    ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.asset(
+                          'assets/images/photo_dog.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                     Text('Adicionar foto do animal', 
+                     style: TextStyle(
+                      color: CustomColors.customPrimaryColor, 
+                      fontSize: 14),),
+                    ],
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: CustomButtonOutline(
-                icon: Icons.location_on,
-                text: "Encontrei o animal aqui",
-                onPressed: () async {
-                  if (await permissionRequest()) {
-                    final position = await Geolocator.getCurrentPosition();
-                    mapController.animateCamera(
-                        CameraUpdate.newCameraPosition(CameraPosition(
-                      target: LatLng(position.latitude, position.longitude),
-                      zoom: 15,
-                    )));
-                    setState(() {
-                      _myPosition =
-                          LatLng(position.latitude, position.longitude);
-                    });
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                          "É preciso da permissão de localização para reportar"),
-                    ));
-                  }
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: CustomButtonOutline(
-                  icon: Icons.add_a_photo,
-                  text: "Adicionar foto do animal",
-                  onPressed: () {}),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -304,7 +281,15 @@ class _ReporterScreenState extends State<ReporterScreen> {
             ),
             CustomButton(
               text: 'Reportar animal de rua',
-              onPressed: () {},
+              onPressed: () async {
+                if (await takeLocation()){
+                  debugPrint(_myPosition.toString());
+                  Modular.to.pop();
+                }
+                else{
+                  debugPrint('erro');
+                }
+              },
             ),
           ],
         ),

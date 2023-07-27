@@ -1,19 +1,22 @@
 import 'package:wowpet/app/modules/communication/communication.dart';
 import 'package:wowpet/app/modules/home/home_module.dart';
 import 'package:wowpet/app/modules/home_pr/home_pr_module.dart';
+import 'package:wowpet/app/modules/login/pages/forgot_password_page.dart';
 import 'package:wowpet/app/modules/login/pages/login_page.dart';
-import 'package:wowpet/app/modules/login/login_store.dart';
+import 'package:wowpet/app/modules/login/stores/login_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:wowpet/app/modules/login/pages/register_pet_screen.dart';
-import 'package:wowpet/app/modules/login/pages/sign_up_screen.dart';
-import 'package:wowpet/app/modules/login/sing_up_store.dart';
-import '../home/test.dart';
+import 'package:wowpet/app/modules/login/pages/register_pet_page.dart';
+import 'package:wowpet/app/modules/login/pages/sign_up_page.dart';
+import 'package:wowpet/app/modules/login/stores/sing_up_store.dart';
+import 'pages/report_animal_page_1.dart';
+import 'stores/forgot_password_store.dart';
 
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => LoginStore()),
-    Bind.lazySingleton((i) => SignUpStore()),
+    Bind.factory((i) => LoginStore()),
+    Bind.factory((i) => SignUpStore()),
+    Bind.factory((i) => ForgotPasswordStore()),
     Bind.instance(CommunicationStore())
   ];
 
@@ -24,6 +27,7 @@ class LoginModule extends Module {
     ChildRoute('/register_pet/', child: (_, args) => const RegisterPetScreen()),
     ModuleRoute('/home/', module: HomeModule()),
     ModuleRoute('/home_pr/', module: HomePrModule()),
-    ChildRoute('/test/', child: (_, args) => const MyApp2()),
+    ChildRoute('/test/', child: (_, args) => const ReportAnimalPage1()),
+    ChildRoute('/forgot_password/', child: (_, args) => const ForgotPasswordPage())
   ];
 }
