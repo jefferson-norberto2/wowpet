@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/modules/home/pages/home_screen.dart';
-import 'package:wowpet/app/modules/home/pages/register_imunization_screen.dart';
+import 'package:wowpet/app/modules/home/pages/perfil_page.dart';
 import 'package:wowpet/app/modules/home/pages/reporter_screen.dart';
 import 'package:wowpet/app/modules/home/pages/verify_nfc_page.dart';
 import '../../../config/custom_colors.dart';
@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> {
     HomeScreen(),
     ReporterScreen(),
     VerifyNfcPage(),
-    ResgisterImunizationScreen()
+    PerfilPage(),
   ];
 
   void _onItemTapped(int index) {

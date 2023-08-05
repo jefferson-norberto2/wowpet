@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:wowpet/app/modules/login/pages/report_animal_page_1.dart';
+import '../login/presenter/pages/report_animal_page_1.dart';
 import 'stores/home_store.dart';
 import 'pages/home_page.dart';
 

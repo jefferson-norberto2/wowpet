@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../components/custom_text_field.dart';
-import '../../../config/custom_colors.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../config/custom_colors.dart';
 
 class RegisterPetScreen extends StatefulWidget {
   const RegisterPetScreen({super.key});

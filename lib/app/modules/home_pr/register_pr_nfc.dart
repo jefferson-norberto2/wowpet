@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import '../login/components/custom_text_field.dart';
+
+import '../../components/custom_text_field.dart';
 
 class RegisterPrNfc extends StatefulWidget {
   const RegisterPrNfc({super.key});

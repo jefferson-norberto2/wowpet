@@ -1,22 +1,51 @@
-import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../components/custom_text_field.dart';
-import '../../../config/custom_colors.dart';
+import '../../../../components/custom_text_field.dart';
+import '../../../../config/custom_colors.dart';
+import '../states/login_state.dart';
+import '../../domain/entities/user.dart';
 import '../stores/login_store.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
-  final store = Modular.get<LoginStore>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  bool keepLoged = false;
+  final editTextEmail = TextEditingController(text: "");
+  final editTextPassword = TextEditingController(text: "");
+
+
+  @override
+  void initState(){
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    int selectedIndex = 0;
+    final store = context.watch<LoginStore>();
+    final state = store.value;
+    final height = MediaQuery.of(context).size.height;
 
-    return SingleChildScrollView(
+    if (state is LoadingLoginState){
+    } else if (state is ErrorLoginState){
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showMyDialog(title: "Error", message: state.message, isAError: true, store: store);
+      });
+    } else if (state is SucessLoginState){
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Modular.to.pushNamed('/task_module/', arguments: state.user);
+      });
+    }
+
+    return 
+    SafeArea(child: 
+      Scaffold(
+        body: SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
         child: Column(
@@ -27,7 +56,7 @@ class SignInScreen extends StatelessWidget {
               children: [
                 // App name
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: size.height * 0.1),
+                  padding: EdgeInsets.symmetric(vertical: height * 0.1),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -90,9 +119,9 @@ class SignInScreen extends StatelessWidget {
 
                 // Email
                 CustomTextField(
-                  icon: Icons.person,
-                  label: 'Usuário',
-                  controller: emailController,
+                  icon: Icons.email,
+                  label: 'E-mail',
+                  controller: editTextEmail,
                 ),
 
                 // Password
@@ -101,9 +130,20 @@ class SignInScreen extends StatelessWidget {
                   label: 'Senha',
                   isSecrect: true,
                   padding_bottom: 0.0,
-                  controller: passwordController,
+                  controller: editTextPassword,
                 ),
 
+                Row(
+                  children: [
+                    Checkbox(
+                      value: keepLoged, 
+                      onChanged: (bool? onChanged){ 
+                        setState(() { 
+                          keepLoged = onChanged!; 
+                        });
+                      }),
+                    const Text("Manter conectado"),
+                    const Spacer(),
                 // Forgot Password Button
                 Align(
                   alignment: Alignment.centerRight,
@@ -119,6 +159,10 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                  ],
+                ),
+
+                
 
                 // Sign In Button
                 Padding(
@@ -134,12 +178,9 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        store.login(
-                            emailController.text, passwordController.text);
-                        selectedIndex += 1;
-                        if (selectedIndex == 5) {
-                          Modular.to.pushNamed('/home/');
-                        }
+                        FocusScope.of(context).unfocus();
+                        store.login(User(email: editTextEmail.text, password: editTextPassword.text));
+                        // Modular.to.pushNamed('/home/');
                       },
                       child: const Text(
                         'Entrar',
@@ -233,6 +274,39 @@ class SignInScreen extends StatelessWidget {
           ],
         ),
       ),
+    ),
+    ),
     );
   }
+
+  void onExit(LoginStore store){
+    store.cleanState();
+    Modular.to.pushNamed('/home');
+  }
+
+  void _showMyDialog({required String title, required String message, bool isAError = false, LoginStore? store}) {
+    if(MediaQuery.of(context).viewInsets.bottom == 0.0){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title, style: TextStyle(color: isAError ? Colors.red : Colors.black)),
+          content: Text(message),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                if (store != null) {
+                  store.cleanState();
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+  }
 }
+
