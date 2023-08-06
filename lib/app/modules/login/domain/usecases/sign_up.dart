@@ -5,18 +5,18 @@ import '../repositories/user_repository.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
-abstract class ISendUser {
-  Future<Either<IUserException, User>> call(User user);
+abstract class ISignUp {
+  Future<Either<IUserException, bool>> call(User user);
 }
 
-class SendUser implements ISendUser {
+class SignUp implements ISignUp {
   final IUserRepository _userRepository;
   final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
-  SendUser(this._userRepository);
+  SignUp(this._userRepository);
 
   @override
-  Future<Either<IUserException, User>> call(User user) async {
+  Future<Either<IUserException, bool>> call(User user) async {
     if (user.email.isEmpty || user.password.isEmpty || user.name!.isEmpty || user.cep!.isEmpty) {
       return left(const UserException('Todos os campos precisam ser preenchidos'));
     }

@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import '../../domain/entities/user.dart';
-import '../../domain/usecases/send_user.dart';
+import '../../domain/usecases/sign_up.dart';
 import '../states/sign_up_state.dart';
 
 class SignUpStore extends ValueNotifier<ISignUpState>{
-  final ISendUser _sendUser;
+  final ISignUp _sendUser;
 
   SignUpStore(this._sendUser) : super(EmptySignUpState());
 
@@ -18,10 +18,12 @@ class SignUpStore extends ValueNotifier<ISignUpState>{
     final newState = result.fold((l) {
       return ErrorSignUpState(l.message);
     }, (r) {
-      if (r.id!.isEmpty) {
-        return ErrorSignUpState("E-mail já cadastrado!");
+      if (r) {
+        return SuccessSignUpState("Usuário cadastrado com sucesso!");
+      }else{
+        return ErrorSignUpState("Problema ao cadastrar usuário");
       }
-      return SuccessSignUpState(r);
+      
     });
 
     emit(newState); 

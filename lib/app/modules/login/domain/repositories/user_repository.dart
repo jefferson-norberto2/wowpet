@@ -5,5 +5,5 @@ import '../erros/erros.dart';
 
 abstract class IUserRepository {
   Future<Either<IUserException, User>> signIn(User user);
-  Future<Either<IUserException, User>> signUp(User user);
+  Future<Either<IUserException, bool>> signUp(User user);
 }

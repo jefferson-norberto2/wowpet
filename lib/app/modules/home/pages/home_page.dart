@@ -5,11 +5,14 @@ import 'package:wowpet/app/modules/home/pages/perfil_page.dart';
 import 'package:wowpet/app/modules/home/pages/reporter_screen.dart';
 import 'package:wowpet/app/modules/home/pages/verify_nfc_page.dart';
 import '../../../config/custom_colors.dart';
+import '../../login/domain/entities/user.dart';
 import '../stores/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({Key? key, this.title = 'Home'}) : super(key: key);
+  final User user;
+
+  const HomePage({Key? key, required this.user, this.title = 'Home'}) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
@@ -20,11 +23,11 @@ class HomePageState extends State<HomePage> {
   late Disposer disposer;
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    ReporterScreen(),
-    VerifyNfcPage(),
-    PerfilPage(),
+  late final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    const ReporterScreen(),
+    const VerifyNfcPage(),
+    const PerfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -64,6 +67,17 @@ class HomePageState extends State<HomePage> {
       color: CustomColors.customPrimaryColor,
       child: SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: CustomColors.customPrimaryColor,
+            title: Text('Bem-vindo ${widget.user.name}'),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.notifications),
+              ),
+            ],
+          ),
           bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(

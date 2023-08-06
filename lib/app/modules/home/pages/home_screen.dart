@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 
 class HomeScreen extends StatefulWidget {
+
   const HomeScreen({super.key});
 
   @override
@@ -24,13 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              'Bem vindo, Jefferson!',
-              style: TextStyle(
-                fontSize: 20,
-                color: CustomColors.customPrimaryColor,
-              ),
-            ),
+            // Text(
+            //   'Bem vindo, ${widget.userName ?? 'Usuário'}!}',
+            //   style: TextStyle(
+            //     fontSize: 20,
+            //     color: CustomColors.customPrimaryColor,
+            //   ),
+            // ),
             Card(
               child: Column(
                 children: [

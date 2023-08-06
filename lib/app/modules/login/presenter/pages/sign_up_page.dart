@@ -25,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController controllerRua = TextEditingController();
   final TextEditingController controllerBairro = TextEditingController();
   final TextEditingController controllerCEP = TextEditingController();
+  late User user;
 
   final cepFormartter = MaskTextInputFormatter(
     mask: '##.###-###',
@@ -57,7 +58,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final store = context.watch<SignUpStore>();
     final state = store.value;
 
@@ -68,13 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
       });
     } else if (state is SuccessSignUpState){
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if(state.user.id!.isEmpty){
-          _showMyDialog(title: "Error", message: "E-mail já cadastrado!", isAError: true, store: store);
-        }else if (state.user.havePet == true) {
-          Modular.to.pushNamed('/register_pet/', arguments: state.user);
-        } else {
-          Modular.to.pushNamed('/home/', arguments: state.user);
-        }
+        _showMyDialog(title: "Cadastro realizado", message: "Verifique seu e-mail para confirmar seu cadastro", isAError: false, store: store);
       });
     }
 
@@ -166,41 +160,41 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: controllerCEP,
                   ),
                   const Spacer(),
-                  Text(
-                    'Você tem algum animal de estimação?',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: CustomColors.customPrimaryColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Radio(
-                        value: Pet.yes,
-                        groupValue: pet,
-                        onChanged: (value) {
-                          setState(() {
-                            pet = value!;
-                          });
-                        },
-                      ),
-                      const Text('Sim'),
-                      SizedBox(
-                        width: size.width * 0.1,
-                      ),
-                      Radio(
-                        value: Pet.no,
-                        groupValue: pet,
-                        onChanged: (value) {
-                          setState(() {
-                            pet = value!;
-                          });
-                        },
-                      ),
-                      const Text('Não'),
-                    ],
-                  ),
+                  // Text(
+                  //   'Você tem algum animal de estimação?',
+                  //   style: TextStyle(
+                  //       fontSize: 16,
+                  //       color: CustomColors.customPrimaryColor,
+                  //       fontWeight: FontWeight.bold),
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Radio(
+                  //       value: Pet.yes,
+                  //       groupValue: pet,
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           pet = value!;
+                  //         });
+                  //       },
+                  //     ),
+                  //     const Text('Sim'),
+                  //     SizedBox(
+                  //       width: size.width * 0.1,
+                  //     ),
+                  //     Radio(
+                  //       value: Pet.no,
+                  //       groupValue: pet,
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           pet = value!;
+                  //         });
+                  //       },
+                  //     ),
+                  //     const Text('Não'),
+                  //   ],
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: ElevatedButton(
@@ -212,24 +206,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       onPressed: () async {
-                        store.registerUser(
-                          User(
+                        user =  User(
                             name: controllerName.text,
                             email: controllerEmail.text,
                             password: controllerPassword.text,
                             cep: controllerCEP.text,
                             havePet: pet == Pet.yes ? true : false,
-                          ),
-                        );
+                          );
+                        store.registerUser(user);
                         
-                        // if (pet == Pet.yes) {
-                        //   Modular.to.pushNamed('/register_pet/');
-                        // } else {
-                        //   Modular.to.pushNamed('/home/');
-                        // }
                       },
                       child: const Text(
-                        'Continuar',
+                        'Confirmar',
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -265,6 +253,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   store.cleanState();
                 }
                 Navigator.of(context).pop();
+                if (!isAError) {
+                 Modular.to.pop();
+                }
               },
               child: const Text('OK'),
             ),

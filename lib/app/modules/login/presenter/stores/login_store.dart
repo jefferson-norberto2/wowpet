@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../../domain/entities/user.dart';
-import '../../domain/usecases/get_user.dart';
+import '../../domain/usecases/sign_in.dart';
 import '../states/login_state.dart';
 
 class LoginStore extends ValueNotifier<ILoginState>{

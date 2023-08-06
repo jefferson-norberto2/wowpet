@@ -1,12 +1,10 @@
 
-import '../../domain/entities/user.dart';
-
 abstract class ISignUpState {}
 
 class SuccessSignUpState implements ISignUpState {
-  final User user;
+  final String message;
 
-  SuccessSignUpState(this.user);
+  SuccessSignUpState(this.message);
   
 }
 

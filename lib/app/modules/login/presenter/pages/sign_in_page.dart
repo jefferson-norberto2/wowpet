@@ -38,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
       });
     } else if (state is SucessLoginState){
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        // Modular.to.pushNamed('/task_module/', arguments: state.user);
+        Modular.to.pushNamed('/home/', arguments: state.user);
       });
     }
 
@@ -256,7 +256,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     onPressed: () {
-                      Modular.to.pushNamed('/test/');
+                      Modular.to.pushNamed('/report_animal/');
                     },
                     child: const Text(
                       'Reportar Animal ou Denunciar Abuso',

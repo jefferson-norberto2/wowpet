@@ -30,14 +30,13 @@ class UserRepository extends IUserRepository {
   }
   
   @override
-  Future<Either<IUserException, User>> signUp(User user) async {
+  Future<Either<IUserException, bool>> signUp(User user) async {
     try{
       final request = UserAdapter.toJsonSignUp(user);
-      final sucess = await _signUpDatasource.signUp(request);
-      final decoded = UserAdapter.fromJsonSignUp(sucess);
-      return right(decoded);
+      final response = await _signUpDatasource.signUp(request);
+      return right(response['sign_up']);
     } catch (e) {
-      return left(const UserException("Problem to send user, check connection"));
+      return left(const UserException("Problema ao cadastrar usuário"));
     }
   }
   
