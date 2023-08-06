@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/modules/home/pages/home_screen.dart';
 import 'package:wowpet/app/modules/home/pages/perfil_page.dart';
@@ -48,18 +49,18 @@ class HomePageState extends State<HomePage> {
     disposer();
   }
 
-  Widget _buildFloatingActionButton() {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 200),
-      child: _selectedIndex == 0
-          ? FloatingActionButton.extended(
-              onPressed: () {},
-              label: const Text('Denuncie'),
-              backgroundColor: CustomColors.customPrimaryColor,
-            )
-          : const SizedBox(),
-    );
-  }
+  // Widget _buildFloatingActionButton() {
+  //   return AnimatedSwitcher(
+  //     duration: const Duration(milliseconds: 200),
+  //     child: _selectedIndex == 0
+  //         ? FloatingActionButton.extended(
+  //             onPressed: () {},
+  //             label: const Text('Denuncie'),
+  //             backgroundColor: CustomColors.customPrimaryColor,
+  //           )
+  //         : const SizedBox(),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -111,24 +112,17 @@ class HomePageState extends State<HomePage> {
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: CustomColors.customPrimaryColor,
-            onTap: _onItemTapped,
-          ),
-          body: ScopedBuilder<HomeStore, int>(
-            store: store,
-            onState: (context, counter) {
-              return Center(
-                child: _widgetOptions.elementAt(_selectedIndex),
-              );
+            onTap: (index){
+              // if (index == 0){
+              //   Modular.to.pushNamed('/home/initial2/');
+              // }else{
+              //   _onItemTapped(index);
+              // }
+              _onItemTapped(index);
             },
-            onError: (context, error) => const Center(
-              child: Text(
-                'Too many clicks',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-            onLoading: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+          ),
+          body: Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
           ),
         ),
       ),

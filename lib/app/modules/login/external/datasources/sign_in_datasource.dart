@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:wowpet/app/modules/login/infra/datasources/sign_in_datasource.dart';
+import '../../infra/datasources/sign_in_datasource.dart';
 import '../../domain/erros/erros.dart';
 
 class SignInDatasource implements ISignInDatasource {
