@@ -4,6 +4,6 @@ import '../entities/user.dart';
 import '../erros/erros.dart';
 
 abstract class IUserRepository {
-  Future<Either<IUserException, User>> getUser(User user);
-  Future<Either<IUserException, User>> sendUser(User user);
+  Future<Either<IUserException, User>> signIn(User user);
+  Future<Either<IUserException, User>> signUp(User user);
 }

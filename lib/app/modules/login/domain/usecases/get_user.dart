@@ -20,7 +20,7 @@ class GetUser implements IGetUser{
       return left(const UserException('Todos os campos precisam ser preenchidos'));
     }
 
-    return await _userRepository.getUser(User(name: user.name,
+    return await _userRepository.signIn(User(name: user.name,
            email: user.email,
            password: encryptPassword(user.password),
            cep: user.cep,

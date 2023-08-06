@@ -33,7 +33,7 @@ class SendUser implements ISendUser {
       return left(const UserException('CEP inválido'));
     }
     
-    return await _userRepository.sendUser(
+    return await _userRepository.signUp(
       User(name: user.name,
            email: user.email,
            password: encryptPassword(user.password),

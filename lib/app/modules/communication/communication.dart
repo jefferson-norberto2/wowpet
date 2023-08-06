@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
-
-import '../login/domain/entities/user.dart';
 
 class CommunicationStore {
   // final ip = 'http://192.168.1.72:5000';

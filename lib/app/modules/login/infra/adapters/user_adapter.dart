@@ -2,15 +2,19 @@
 import '../../domain/entities/user.dart';
 
 class UserAdapter {
-  static User fromJsonLogin(Map<String, dynamic> json) {
+  static User fromJsonSignIn(Map<String, dynamic> json) {
+    try{
     return User(
       id: json['id'],
       email: json['email'],
       password: json['password'],
     );
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
-  static Map<String, dynamic> toJsonLogin(User user) {
+  static Map<String, dynamic> toJsonSignIn(User user) {
     return {
       'id': '',
       'email': user.email,
@@ -18,7 +22,7 @@ class UserAdapter {
     };
   }
 
-  static User fromJsonRegister(Map<String, dynamic> json) {
+  static User fromJsonSignUp(Map<String, dynamic> json) {
     return User(
       id: json['id'],
       email: json['email'],
@@ -29,14 +33,14 @@ class UserAdapter {
     );
   }
 
-  static Map<String, dynamic> toJsonRegister(User user) {
+  static Map<String, dynamic> toJsonSignUp(User user) {
     return {
       'id': '',
       'email': user.email,
       'password': user.password,
       'name': user.name,
       'cep': user.cep,
-      'havePet': user.havePet,
+      'havePet': user.havePet.toString(),
     };
   }
 

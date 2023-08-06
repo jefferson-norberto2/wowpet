@@ -7,16 +7,16 @@ import '../../../../components/custom_text_field.dart';
 import '../../../../config/custom_colors.dart';
 import '../../domain/entities/user.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
 enum Pet { yes, no }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerCpf = TextEditingController();
   final TextEditingController controllerEmail = TextEditingController();

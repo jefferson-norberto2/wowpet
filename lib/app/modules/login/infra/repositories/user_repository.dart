@@ -1,31 +1,41 @@
 import 'package:fpdart/fpdart.dart';
-
+import '../datasources/sign_in_datasource.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/erros/erros.dart';
 import '../../domain/repositories/user_repository.dart';
-import '../datasources/user_datasource.dart';
+import '../adapters/user_adapter.dart';
+import '../datasources/sign_up_datasource.dart';
 
 class UserRepository extends IUserRepository {
-  final IUserDatasource _userDatasource;
+  final ISignInDatasource _signInDatasource;
+  final ISignUpDatasource _signUpDatasource;
 
-  UserRepository(this._userDatasource);
+  UserRepository(this._signInDatasource, this._signUpDatasource);
 
   @override
-  Future<Either<IUserException, User>> getUser(User user) async {
+  Future<Either<IUserException, User>> signIn(User user) async {
     
     try{
-      final userReceived = await _userDatasource.getUser(user);
-      return right(userReceived);
+      final request = UserAdapter.toJsonSignIn(user);
+      final response = await _signInDatasource.signIn(request);
+      try{
+        final sucess = UserAdapter.fromJsonSignIn(response['sign_in']);
+        return right(sucess);
+      } catch (e) {
+        return left(const UserException('Usuário não encontrado'));
+      }
     } catch (e) {
-      return left(const UserException("Problem to get user, check connection"));
+      return left(const UserException('Problema de conexão com o servidor'));
     }
   }
   
   @override
-  Future<Either<IUserException, User>> sendUser(User user) async {
+  Future<Either<IUserException, User>> signUp(User user) async {
     try{
-      final sucess = await _userDatasource.sendUser(user);
-      return right(sucess);
+      final request = UserAdapter.toJsonSignUp(user);
+      final sucess = await _signUpDatasource.signUp(request);
+      final decoded = UserAdapter.fromJsonSignUp(sucess);
+      return right(decoded);
     } catch (e) {
       return left(const UserException("Problem to send user, check connection"));
     }
