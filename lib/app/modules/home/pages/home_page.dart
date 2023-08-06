@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/modules/home/pages/home_screen.dart';
 import 'package:wowpet/app/modules/home/pages/perfil_page.dart';
