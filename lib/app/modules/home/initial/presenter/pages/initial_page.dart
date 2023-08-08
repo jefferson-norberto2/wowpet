@@ -25,13 +25,6 @@ class _InitialPageState extends State<InitialPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // Text(
-            //   'Bem vindo, ${widget.userName ?? 'Usuário'}!}',
-            //   style: TextStyle(
-            //     fontSize: 20,
-            //     color: CustomColors.customPrimaryColor,
-            //   ),
-            // ),
             Card(
               child: Column(
                 children: [

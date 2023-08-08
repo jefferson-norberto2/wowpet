@@ -15,10 +15,10 @@ class HomeModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => HomePage(user: args.data), children: [
-      ModuleRoute('/initial_module/', module: InitialModule()),
-      ModuleRoute('/report_animal_module/', module: ReportAnimalsModule()),
-      ModuleRoute('/verify_animal_module/', module: VerifyAnimalModule()),
-      ModuleRoute('/perfil_module/', module: PerfilModule()),      
+      ModuleRoute('/initial_module/', module: InitialModule(), transition: TransitionType.noTransition),
+      ModuleRoute('/report_animal_module/', module: ReportAnimalsModule(), transition: TransitionType.noTransition),
+      ModuleRoute('/verify_animal_module/', module: VerifyAnimalModule(), transition: TransitionType.noTransition),
+      ModuleRoute('/perfil_module/', module: PerfilModule(), transition: TransitionType.noTransition),      
     ]),
   ];
 }

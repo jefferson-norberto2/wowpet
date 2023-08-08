@@ -20,7 +20,6 @@ class HomePageState extends State<HomePage> {
   late Disposer disposer;
   int _selectedIndex = 0;
 
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -44,6 +43,7 @@ class HomePageState extends State<HomePage> {
     if (_selectedIndex == 0){
       Modular.to.navigate('/home/initial_module/', arguments: widget.user);
     }
+    final userName = widget.user.name?.split(' ')[0];
 
     return Container(
       color: CustomColors.customPrimaryColor,
@@ -52,7 +52,7 @@ class HomePageState extends State<HomePage> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor: CustomColors.customPrimaryColor,
-            title: Text('Bem-vindo ${widget.user.name}'),
+            title: Text('Bem-vindo ${userName ?? 'Usuário'}'),
             actions: [
               IconButton(
                 onPressed: () {},
