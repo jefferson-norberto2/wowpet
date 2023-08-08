@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wowpet/app/config/custom_colors.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../config/custom_colors.dart';
+import '../states/initial_state.dart';
+import '../stores/initial_store.dart';
 
 class InitialPage extends StatefulWidget {
 
@@ -10,16 +13,29 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage> {
-  double sizeDiameter = 50;
-  List images = [
-    'assets/images/1.png',
-    'assets/images/2.png',
-    'assets/images/3.png',
-    'assets/images/4.png',
-    'assets/images/5.png'
-  ];
+  final sizeDiameter = 50.0;
+  final images = [];
+  bool firstCall = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<InitialStore>().getLostPets();
+    });
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+    final store = context.watch<InitialStore>();
+    final state = store.value;
+    final lostAnimals = state is SuccessInitialState ? state.pets : [];
+
+    for(var pet in lostAnimals){
+      images.add(pet.photo);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SingleChildScrollView(
@@ -82,12 +98,13 @@ class _InitialPageState extends State<InitialPage> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            for (int i = 0; i < 5; i++)
+                            for (int i = 0; i < images.length; i++)
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: CircleAvatar(
                                   radius: sizeDiameter,
-                                  backgroundImage: AssetImage(images[i]),
+                                  // backgroundImage: AssetImage(images[i]),
+                                  backgroundImage: NetworkImage(images[i]),
                                 ),
                               ),
                           ],

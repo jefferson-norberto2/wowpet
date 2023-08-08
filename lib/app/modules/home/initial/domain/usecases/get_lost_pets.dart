@@ -15,10 +15,6 @@ class GetLostPets implements IGetLostPets{
 
   @override
   Future<Either<IPetException, List<Pet>>> call() async {
-    try{
       return await repository.getLostPets();
-    } catch (e) {
-      throw Exception(e);
-    }
   }
 }

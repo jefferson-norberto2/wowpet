@@ -4,15 +4,15 @@ import 'package:wowpet/app/modules/home/initial/domain/usecases/get_lost_pets.da
 import 'package:wowpet/app/modules/home/initial/presenter/states/initial_state.dart';
 
 class InitialStore extends ValueNotifier<IInitialState>{
-  final IGetLostPets _getUser;
+  final IGetLostPets _getLostAnimals;
 
-  InitialStore(this._getUser) : super(EmptyInitialState());
+  InitialStore(this._getLostAnimals) : super(EmptyInitialState());
 
   void emit(IInitialState state) => value = state;
 
   Future<void> getLostPets() async {
     emit(LoadingInitialState());
-    final result = await _getUser.call();
+    final result = await _getLostAnimals.call();
 
     final newState = result.fold((l) {
       return ErrorInitialState(l.message);
