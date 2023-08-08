@@ -1,7 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wowpet/app/modules/home/initial/initial_module.dart';
-import '../login/presenter/pages/report_animal_page_1.dart';
-import 'initial/presenter/pages/initial_page.dart';
+import 'package:wowpet/app/modules/home/perfil/perfil_module.dart';
+import 'package:wowpet/app/modules/home/report_animals/report_animals_module.dart';
+import 'package:wowpet/app/modules/home/verify_animal/verify_animal_module.dart';
 import 'stores/home_store.dart';
 import 'pages/home_page.dart';
 
@@ -13,9 +14,11 @@ class HomeModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => HomePage(user: args.data)),
-    ChildRoute('/test/', child: (_, args) => const ReportAnimalPage1()),
-    ChildRoute('/initial2/', child: (_, args) => const InitialPage()),
-    ModuleRoute('/initial/', module: InitialModule())
+    ChildRoute('/', child: (_, args) => HomePage(user: args.data), children: [
+      ModuleRoute('/initial_module/', module: InitialModule()),
+      ModuleRoute('/report_animal_module/', module: ReportAnimalsModule()),
+      ModuleRoute('/verify_animal_module/', module: VerifyAnimalModule()),
+      ModuleRoute('/perfil_module/', module: PerfilModule()),      
+    ]),
   ];
 }

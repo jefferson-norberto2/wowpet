@@ -11,14 +11,14 @@ enum LookedAnimal { yes, no }
 enum Identification { yes, no }
 enum Zoonoses { yes, no }
 
-class ReporterScreen extends StatefulWidget {
-  const ReporterScreen({super.key});
+class ReportAnimalsPage extends StatefulWidget {
+  const ReportAnimalsPage({super.key});
 
   @override
-  State<ReporterScreen> createState() => _ReporterScreenState();
+  State<ReportAnimalsPage> createState() => _ReportAnimalsPageState();
 }
 
-class _ReporterScreenState extends State<ReporterScreen> {
+class _ReportAnimalsPageState extends State<ReportAnimalsPage> {
   late GoogleMapController mapController;
   AnimalNumber _animalNumber = AnimalNumber.one;
   LookedAnimal _lookedAnimal = LookedAnimal.yes;

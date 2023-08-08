@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
 import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import 'package:wowpet/app/modules/home/stores/verify_nfc_store.dart';
-import '../components/my_alert_dialog.dart';
+import 'package:wowpet/app/modules/home/verify_animal/presenter/stores/verify_nfc_store.dart';
+import '../../../components/my_alert_dialog.dart';
 
 class VerifyNfcPage extends StatefulWidget {
   const VerifyNfcPage({super.key});

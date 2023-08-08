@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wowpet/app/modules/home/pages/register_imunization_screen.dart';
-import '../../../config/custom_colors.dart';
+import 'package:wowpet/app/modules/home/perfil/presenter/pages/register_imunization_page.dart';
+import '../../../../../config/custom_colors.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -135,7 +135,7 @@ class _PerfilPageState
                     onTap: (){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const ResgisterImunizationScreen()),
+                        MaterialPageRoute(builder: (context) => const ResgisterImunizationPage()),
                       );
                     },
                     child: Padding(

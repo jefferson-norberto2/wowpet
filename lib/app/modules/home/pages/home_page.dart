@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:wowpet/app/modules/home/pages/home_screen.dart';
-import 'package:wowpet/app/modules/home/pages/perfil_page.dart';
-import 'package:wowpet/app/modules/home/pages/reporter_screen.dart';
-import 'package:wowpet/app/modules/home/pages/verify_nfc_page.dart';
 import '../../../config/custom_colors.dart';
 import '../../login/domain/entities/user.dart';
 import '../stores/home_store.dart';
@@ -23,12 +20,6 @@ class HomePageState extends State<HomePage> {
   late Disposer disposer;
   int _selectedIndex = 0;
 
-  late final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
-    const ReporterScreen(),
-    const VerifyNfcPage(),
-    const PerfilPage(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -48,21 +39,12 @@ class HomePageState extends State<HomePage> {
     disposer();
   }
 
-  // Widget _buildFloatingActionButton() {
-  //   return AnimatedSwitcher(
-  //     duration: const Duration(milliseconds: 200),
-  //     child: _selectedIndex == 0
-  //         ? FloatingActionButton.extended(
-  //             onPressed: () {},
-  //             label: const Text('Denuncie'),
-  //             backgroundColor: CustomColors.customPrimaryColor,
-  //           )
-  //         : const SizedBox(),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
+    if (_selectedIndex == 0){
+      Modular.to.navigate('/home/initial_module/', arguments: widget.user);
+    }
+
     return Container(
       color: CustomColors.customPrimaryColor,
       child: SafeArea(
@@ -74,7 +56,7 @@ class HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.notifications),
+                icon: const Icon(Icons.exit_to_app),
               ),
             ],
           ),
@@ -112,16 +94,20 @@ class HomePageState extends State<HomePage> {
             currentIndex: _selectedIndex,
             selectedItemColor: CustomColors.customPrimaryColor,
             onTap: (index){
-              // if (index == 0){
-              //   Modular.to.pushNamed('/home/initial2/');
-              // }else{
-              //   _onItemTapped(index);
-              // }
+              if (index == 0){
+                Modular.to.navigate('/home/initial_module/', arguments: widget.user);
+              } else if (index == 1){
+                Modular.to.navigate('/home/report_animal_module/', arguments: widget.user);
+              } else if (index == 2){
+                Modular.to.navigate('/home/verify_animal_module/', arguments: widget.user);
+              } else if (index == 3){
+                Modular.to.navigate('/home/perfil_module/', arguments: widget.user);
+              }
               _onItemTapped(index);
             },
           ),
-          body: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
+          body: const Center(
+            child: RouterOutlet() //_widgetOptions.elementAt(_selectedIndex),
           ),
         ),
       ),

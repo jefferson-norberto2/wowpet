@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../config/custom_colors.dart';
+import '../../../../../config/custom_colors.dart';
 
-class ResgisterImunizationScreen extends StatefulWidget {
-  const ResgisterImunizationScreen({super.key});
+class ResgisterImunizationPage extends StatefulWidget {
+  const ResgisterImunizationPage({super.key});
 
   @override
-  State<ResgisterImunizationScreen> createState() =>
-      _ResgisterImunizationScreenState();
+  State<ResgisterImunizationPage> createState() =>
+      _ResgisterImunizationPageState();
 }
 
-class _ResgisterImunizationScreenState
-    extends State<ResgisterImunizationScreen> {
+class _ResgisterImunizationPageState
+    extends State<ResgisterImunizationPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

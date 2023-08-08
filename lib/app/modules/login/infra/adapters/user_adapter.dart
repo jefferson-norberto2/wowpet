@@ -5,9 +5,12 @@ class UserAdapter {
   static User fromJsonSignIn(Map<String, dynamic> json) {
     try{
     return User(
-      id: json['id'],
+      id: '${json['id']}',
       email: json['email'],
       password: json['password'],
+      name: json['name'],
+      cep: json['cep'],
+      havePet: json['havePet'],
     );
     } catch (e) {
       throw Exception(e);
