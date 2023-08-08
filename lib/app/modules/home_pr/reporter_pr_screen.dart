@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
-import 'package:wowpet/app/modules/home/components/custom_button.dart';
-import 'package:wowpet/app/modules/home/components/custom_button_outline.dart';
+import 'package:wowpet/app/modules/home/presenter/components/custom_button.dart';
+import 'package:wowpet/app/modules/home/presenter/components/custom_button_outline.dart';
 import 'package:location/location.dart';
 
 class ReporterPrScreen extends StatefulWidget {

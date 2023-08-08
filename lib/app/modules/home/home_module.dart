@@ -3,8 +3,8 @@ import 'package:wowpet/app/modules/home/initial/initial_module.dart';
 import 'package:wowpet/app/modules/home/perfil/perfil_module.dart';
 import 'package:wowpet/app/modules/home/report_animals/report_animals_module.dart';
 import 'package:wowpet/app/modules/home/verify_animal/verify_animal_module.dart';
-import 'stores/home_store.dart';
-import 'pages/home_page.dart';
+import 'presenter/stores/home_store.dart';
+import 'presenter/pages/home_page.dart';
 
 class HomeModule extends Module {
   @override

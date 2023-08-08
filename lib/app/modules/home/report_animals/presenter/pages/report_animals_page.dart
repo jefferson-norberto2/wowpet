@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wowpet/app/config/custom_colors.dart';
-import 'package:wowpet/app/modules/home/components/custom_button.dart';
+import 'package:wowpet/app/modules/home/presenter/components/custom_button.dart';
 import 'package:location/location.dart';
 
 enum AnimalNumber { one, tow, three, more }

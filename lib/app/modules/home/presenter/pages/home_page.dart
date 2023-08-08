@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../../../config/custom_colors.dart';
-import '../../login/domain/entities/user.dart';
+import '../../../../config/custom_colors.dart';
+import '../../../login/domain/entities/user.dart';
 import '../stores/home_store.dart';
 
 class HomePage extends StatefulWidget {

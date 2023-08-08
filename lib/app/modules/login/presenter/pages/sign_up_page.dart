@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wowpet/app/modules/login/presenter/states/sign_up_state.dart';
 import 'package:wowpet/app/modules/login/presenter/stores/sign_up_store.dart';
-import '../../../../components/custom_text_field.dart';
+import '../components/custom_text_field.dart';
 import '../../../../config/custom_colors.dart';
 import '../../domain/entities/user.dart';
 

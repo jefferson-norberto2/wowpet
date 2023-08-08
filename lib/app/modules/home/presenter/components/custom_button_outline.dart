@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../config/custom_colors.dart';
+import '../../../../config/custom_colors.dart';
 
 class CustomButtonOutline extends StatefulWidget {
   final IconData? icon;

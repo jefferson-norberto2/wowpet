@@ -1,6 +1,6 @@
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:nfc_manager/nfc_manager.dart';
-import '../../../components/record.dart';
+import '../../../presenter/components/record.dart';
 
 class VerifyNfcStore extends Store<bool> with MementoMixin {
   VerifyNfcStore() : super(false);
