@@ -38,237 +38,239 @@ class _SignInPageState extends State<SignInPage> {
       });
     } else if (state is SucessLoginState){
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        Modular.to.pushNamed('/home/', arguments: state.user);
+        Modular.to.pushNamed('/home_module/', arguments: state.user);
       });
     }
 
-    return 
-    SafeArea(child: 
-      Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              // App name
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: height * 0.13),
-                child: Column(
-                  children: [
-                    Text.rich(
-                      TextSpan(
+    return Container(
+      color: CustomColors.customPrimaryColor,
+      child: SafeArea(
+        child: Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                // App name
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: height * 0.13),
+                  child: Column(
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                            style: const TextStyle(
+                              fontSize: 40,
+                            ),
+                            children: [
+                              const TextSpan(
+                                text: 'Pet',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: 'Friendly',
+                                style: TextStyle(
+                                  color: CustomColors.customColorYellow,
+                                ),
+                              ),
+                            ]),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: DefaultTextStyle(
                           style: const TextStyle(
-                            fontSize: 40,
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
-                          children: [
-                            const TextSpan(
-                              text: 'Pet',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                          child: AnimatedTextKit(
+                            pause: Duration.zero,
+                            repeatForever: true,
+                            animatedTexts: [
+                              FadeAnimatedText(
+                                'Cuide',
+                                textStyle: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            TextSpan(
-                              text: 'Friendly',
-                              style: TextStyle(
-                                color: CustomColors.customColorYellow,
+                              FadeAnimatedText(
+                                'Informe-se',
                               ),
-                            ),
-                          ]),
+                              FadeAnimatedText(
+                                'Reporte',
+                              ),
+                              FadeAnimatedText(
+                                'Encontre',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Category
+    
+                // Email
+                CustomTextField(
+                  icon: Icons.email,
+                  label: 'E-mail',
+                  controller: editTextEmail,
+                ),
+            
+                // Password
+                CustomTextField(
+                  icon: Icons.lock,
+                  label: 'Senha',
+                  isSecrect: true,
+                  paddingBottom: 0.0,
+                  controller: editTextPassword,
+                ),
+            
+                Row(
+                  children: [
+                    Checkbox(
+                      value: keepLoged, 
+                      onChanged: (bool? onChanged){ 
+                        setState(() { 
+                          keepLoged = onChanged!; 
+                        });
+                      }),
+                    const Text("Manter conectado"),
+                    const Spacer(),
+                // Forgot Password Button
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Modular.to.pushNamed('/forgot_password/');
+                    },
+                    child: Text(
+                      'Esqueceu sua senha?',
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
                     ),
-                    SizedBox(
-                      height: 30,
-                      child: DefaultTextStyle(
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
+                  ),
+                ),
+                  ],
+                ),
+    
+                const Spacer(),
+            
+                // Sign In Button
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, bottom: 10),
+                  child: SizedBox(
+                    height: 45,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.customPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: AnimatedTextKit(
-                          pause: Duration.zero,
-                          repeatForever: true,
-                          animatedTexts: [
-                            FadeAnimatedText(
-                              'Cuide',
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                              ),
-                            ),
-                            FadeAnimatedText(
-                              'Informe-se',
-                            ),
-                            FadeAnimatedText(
-                              'Reporte',
-                            ),
-                            FadeAnimatedText(
-                              'Encontre',
-                            ),
-                          ],
+                      ),
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                        store.login(User(email: editTextEmail.text, password: editTextPassword.text));
+                        // Modular.to.pushNamed('/home/');
+                      },
+                      child: const Text(
+                        'Entrar',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+            
+                // Google Button
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  child: SizedBox(
+                    height: 45,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Modular.to.pushNamed('/sign_up/');
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                            color: CustomColors.customPrimaryColor, width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.person_add, color: CustomColors.customPrimaryColor,),),
+                          Text(
+                            'Cadastre-se',
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: CustomColors.customPrimaryColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            
+                // Divider
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 1,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('OU'),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 1,
                       ),
                     ),
                   ],
                 ),
-              ),
-              // Category
-
-              // Email
-              CustomTextField(
-                icon: Icons.email,
-                label: 'E-mail',
-                controller: editTextEmail,
-              ),
-          
-              // Password
-              CustomTextField(
-                icon: Icons.lock,
-                label: 'Senha',
-                isSecrect: true,
-                paddingBottom: 0.0,
-                controller: editTextPassword,
-              ),
-          
-              Row(
-                children: [
-                  Checkbox(
-                    value: keepLoged, 
-                    onChanged: (bool? onChanged){ 
-                      setState(() { 
-                        keepLoged = onChanged!; 
-                      });
-                    }),
-                  const Text("Manter conectado"),
-                  const Spacer(),
-              // Forgot Password Button
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Modular.to.pushNamed('/forgot_password/');
-                  },
-                  child: Text(
-                    'Esqueceu sua senha?',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                    ),
-                  ),
-                ),
-              ),
-                ],
-              ),
-
-              const Spacer(),
-          
-              // Sign In Button
-              Padding(
-                padding: const EdgeInsets.only(top: 30, bottom: 10),
-                child: SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.customPrimaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () {
-                      FocusScope.of(context).unfocus();
-                      store.login(User(email: editTextEmail.text, password: editTextPassword.text));
-                      // Modular.to.pushNamed('/home/');
-                    },
-                    child: const Text(
-                      'Entrar',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                ),
-              ),
-          
-              // Google Button
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 20),
-                child: SizedBox(
-                  height: 45,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Modular.to.pushNamed('/sign_up/');
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: CustomColors.customPrimaryColor, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.person_add, color: CustomColors.customPrimaryColor,),),
-                        Text(
-                          'Cadastre-se',
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: CustomColors.customPrimaryColor),
+            
+                // Report animal or abuse
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 20),
+                  child: SizedBox(
+                    height: 45,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.customPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-          
-              // Divider
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey[400],
-                      thickness: 1,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text('OU'),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey[400],
-                      thickness: 1,
-                    ),
-                  ),
-                ],
-              ),
-          
-              // Report animal or abuse
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10, top: 20),
-                child: SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.customPrimaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        Modular.to.pushNamed('/report_animal/');
+                      },
+                      child: const Text(
+                        'Reportar Animal ou Denunciar Abuso',
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
-                    onPressed: () {
-                      Modular.to.pushNamed('/report_animal/');
-                    },
-                    child: const Text(
-                      'Reportar Animal ou Denunciar Abuso',
-                      style: TextStyle(fontSize: 16),
-                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-    ),
+      ),
+      ),
     );
   }
 

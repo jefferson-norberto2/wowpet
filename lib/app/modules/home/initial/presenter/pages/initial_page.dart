@@ -26,6 +26,14 @@ class _InitialPageState extends State<InitialPage> {
     
   }
 
+  NetworkImage getImage(String url) {
+    try{
+      return NetworkImage(url);
+    } catch(e){
+      return const NetworkImage('https://cdn-icons-png.flaticon.com/512/3460/3460335.png');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final store = context.watch<InitialStore>();

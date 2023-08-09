@@ -17,7 +17,7 @@ import 'presenter/stores/sign_up_store.dart';
 
 class LoginModule extends Module{
   @override
-  List<Bind<Object>> get binds => [
+  List<Bind> get binds => [
     //utils
     Bind.factory((i) => http.Client()),
     //datasources
@@ -38,6 +38,6 @@ class LoginModule extends Module{
     ChildRoute(Modular.initialRoute, child: (context, args) => const SignInPage()),
     ChildRoute('/sign_up/', child: (context, args) => const SignUpPage()),
     ChildRoute('/report_animal/', child: (context, args) => const ReportAnimalPage1()),
-    ModuleRoute('/home/', module: HomeModule()),
+    ModuleRoute('/home_module/', module: HomeModule()),
   ];
 }

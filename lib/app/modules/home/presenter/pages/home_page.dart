@@ -41,7 +41,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (_selectedIndex == 0){
-      Modular.to.navigate('/home/initial_module/', arguments: widget.user);
+      Modular.to.navigate('/home_module/initial_module/', arguments: widget.user);
     }
     final userName = widget.user.name?.split(' ')[0];
 
@@ -95,13 +95,13 @@ class HomePageState extends State<HomePage> {
             selectedItemColor: CustomColors.customPrimaryColor,
             onTap: (index){
               if (index == 0){
-                Modular.to.navigate('/home/initial_module/', arguments: widget.user);
+                Modular.to.navigate('/home_module/initial_module/', arguments: widget.user);
               } else if (index == 1){
-                Modular.to.navigate('/home/report_animal_module/', arguments: widget.user);
+                Modular.to.navigate('/home_module/report_animal_module/', arguments: widget.user);
               } else if (index == 2){
-                Modular.to.navigate('/home/verify_animal_module/', arguments: widget.user);
+                Modular.to.navigate('/home_module/verify_animal_module/', arguments: widget.user);
               } else if (index == 3){
-                Modular.to.navigate('/home/perfil_module/', arguments: widget.user);
+                Modular.to.navigate('/home_module/perfil_module/', arguments: widget.user);
               }
               _onItemTapped(index);
             },

@@ -15,7 +15,7 @@ class PetsDatasource implements IPetsDatasource {
       final uri = Uri.parse('http://10.0.2.2:5000/lost_pets');
       final request = await client.get(uri);
       final decoded = jsonDecode(request.body);
-      return decoded;
+      return decoded['lost_pets'];
     } catch (e, s) {
       throw PetDatasourceException("Problema de conexão com servidor", s);
     }

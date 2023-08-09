@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:wowpet/app/config/custom_colors.dart';
-import 'package:wowpet/app/modules/home/presenter/components/custom_button.dart';
-import 'package:location/location.dart';
+import 'package:wowpet/app/modules/home/report_animals/presenter/states/report_animals_state.dart';
+import '../../../../../config/custom_colors.dart';
+import '../../../presenter/components/custom_button.dart';
+import '../stores/report_animals_store.dart';
+
 
 enum AnimalNumber { one, tow, three, more }
 enum LookedAnimal { yes, no }
@@ -19,47 +21,38 @@ class ReportAnimalsPage extends StatefulWidget {
 }
 
 class _ReportAnimalsPageState extends State<ReportAnimalsPage> {
-  late GoogleMapController mapController;
   AnimalNumber _animalNumber = AnimalNumber.one;
   LookedAnimal _lookedAnimal = LookedAnimal.yes;
   Identification _identification = Identification.no;
   Zoonoses _zoonoses = Zoonoses.yes;
-  final Location _location = Location();
-  LatLng? _myPosition;
+  File? _image;
 
   @override
   void dispose() {
     super.dispose();
   }
 
-  Future<bool> permissionRequest() async {
-    PermissionStatus permissionStatus = await _location.requestPermission();
-    if (permissionStatus == PermissionStatus.granted) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> takeLocation() async{
-    if (await permissionRequest()) {
-      final position = await Geolocator.getCurrentPosition();
-      mapController.animateCamera(
-          CameraUpdate.newCameraPosition(CameraPosition(
-        target: LatLng(position.latitude, position.longitude),
-        zoom: 15,
-      )));
-        _myPosition =
-            LatLng(position.latitude, position.longitude);
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    
+    final store = context.watch<ReportAnimalStore>();
+    final state = store.value;
+    bool reportButton = false;
+
+    if (state is ReportAnimalSuccessState) {
+      reportButton = true;
+    } else if (state is ReportAnimalErrorState) {
+      reportButton = false;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialog(context: context, builder: (context) => AlertDialog(
+          title: const Text('Permissão negada!'),
+          content: Text(state.message),
+          actions: [
+            TextButton(onPressed: () => Modular.to.pop(), child: const Text('Ok'))
+          ],
+        ));
+      });
+    }
 
     Size size = MediaQuery.of(context).size;
     return Padding(
@@ -75,26 +68,40 @@ class _ReportAnimalsPageState extends State<ReportAnimalsPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset(
-                          'assets/images/photo_dog.png',
-                          fit: BoxFit.contain,
+              child: InkWell(
+                onTap: () async {
+                  await store.takePicture();
+                  setState(() {
+                    _image = store.image;
+                  });
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          width: MediaQuery.of(context).size.width,
+                          child: _image != null ? 
+                          Image.file(_image!) 
+                          : 
+                          Image.asset(
+                            'assets/images/photo_dog.png',
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                      ),
-                     Text('Adicionar foto do animal', 
-                     style: TextStyle(
-                      color: CustomColors.customPrimaryColor, 
-                      fontSize: 14),),
-                    ],
+                        _image != null ?
+                        const SizedBox.shrink()
+                        :
+                       Text('Adicionar foto do animal', 
+                       style: TextStyle(
+                        color: CustomColors.customPrimaryColor, 
+                        fontSize: 14),),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -281,15 +288,7 @@ class _ReportAnimalsPageState extends State<ReportAnimalsPage> {
             ),
             CustomButton(
               text: 'Reportar animal de rua',
-              onPressed: () async {
-                if (await takeLocation()){
-                  debugPrint(_myPosition.toString());
-                  Modular.to.pop();
-                }
-                else{
-                  debugPrint('erro');
-                }
-              },
+              onPressed: reportButton ? () {} : null,
             ),
           ],
         ),
