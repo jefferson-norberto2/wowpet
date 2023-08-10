@@ -209,6 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                           onPressed: () async {
+                            FocusScope.of(context).unfocus();
                             user =  User(
                                 name: controllerName.text,
                                 email: controllerEmail.text,

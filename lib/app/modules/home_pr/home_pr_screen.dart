@@ -19,16 +19,38 @@ class _HomePrScreenState extends State<HomePrScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar( 
+        automaticallyImplyLeading: false,
+        backgroundColor: CustomColors.customPrimaryColor,
+        title: Text(
+          'Acesso Prefeitura',
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.notifications),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              'Bem vinda, Mari!',
-              style: TextStyle(
-                fontSize: 20,
-                color: CustomColors.customPrimaryColor,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Bem-vindo Jonas',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: CustomColors.customPrimaryColor,
+                ),
               ),
             ),
             Card(

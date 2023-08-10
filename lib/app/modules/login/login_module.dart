@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:http/http.dart' as http;
 import 'package:wowpet/app/modules/home/home_module.dart';
+import 'package:wowpet/app/modules/home_pr/home_pr_module.dart';
 import 'package:wowpet/app/modules/login/external/datasources/sign_in_datasource.dart';
 import 'package:wowpet/app/modules/login/external/datasources/sign_up_datasource.dart';
 import 'package:wowpet/app/modules/login/infra/datasources/sign_in_datasource.dart';
@@ -39,5 +40,6 @@ class LoginModule extends Module{
     ChildRoute('/sign_up/', child: (context, args) => const SignUpPage()),
     ChildRoute('/report_animal/', child: (context, args) => const ReportAnimalPage1()),
     ModuleRoute('/home_module/', module: HomeModule()),
+    ModuleRoute('/home_pr_module/', module: HomePrModule())
   ];
 }

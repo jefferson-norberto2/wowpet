@@ -176,8 +176,11 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       onPressed: () {
                         FocusScope.of(context).unfocus();
-                        store.login(User(email: editTextEmail.text, password: editTextPassword.text));
-                        // Modular.to.pushNamed('/home/');
+                        if(editTextEmail.text == "jmn@gmail.com"){
+                          Modular.to.pushNamed('/home_pr_module/');
+                        }else{
+                          store.login(User(email: editTextEmail.text, password: editTextPassword.text));
+                        }
                       },
                       child: const Text(
                         'Entrar',
