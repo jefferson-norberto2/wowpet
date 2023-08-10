@@ -11,8 +11,8 @@ class HomePrModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => HomePrPage()),
+    ChildRoute(Modular.initialRoute, child: (_, args) => const HomePrPage()),
     ChildRoute('/immunization_pr_screen/',
-        child: (_, args) => ImunizationPrScreen()),
+        child: (_, args) => const ImunizationPrScreen()),
   ];
 }

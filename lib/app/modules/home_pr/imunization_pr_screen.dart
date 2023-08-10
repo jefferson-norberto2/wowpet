@@ -21,7 +21,7 @@ class _ImunizationPrScreenState extends State<ImunizationPrScreen> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Imunização'),
+            title: const Text('Imunização'),
             backgroundColor: CustomColors.customPrimaryColor,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
@@ -60,10 +60,10 @@ class _ImunizationPrScreenState extends State<ImunizationPrScreen> {
                                 ),
                               ),
                               subtitle: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                padding: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Text(
                                   'Data da última vacina: ${dates_aplly[i]}\n\nPróxima vacina: ${dates_next[i]}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 14, color: Colors.black),
                                 ),
                               ),
